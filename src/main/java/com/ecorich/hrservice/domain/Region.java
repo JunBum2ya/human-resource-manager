@@ -18,7 +18,6 @@ import java.util.List;
 @Entity
 public class Region {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "region_id", nullable = false)
     private Long id;
     @Column(name = "region_name",length = 25)
@@ -29,8 +28,9 @@ public class Region {
     /**
      * 팩토리 메소드
      */
-    public static Region of(String name) {
+    public static Region of(Long id, String name) {
         return Region.builder()
+                .id(id)
                 .name(name)
                 .build();
     }
