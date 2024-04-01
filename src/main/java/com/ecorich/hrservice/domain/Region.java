@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * 대륙
  */
@@ -20,6 +23,8 @@ public class Region {
     private Long id;
     @Column(name = "region_name",length = 25)
     private String name;
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL)
+    private List<Country> countries = new LinkedList<>();
 
     /**
      * 팩토리 메소드
@@ -28,5 +33,9 @@ public class Region {
         return Region.builder()
                 .name(name)
                 .build();
+    }
+
+    public void addCountry(Country country) {
+        this.countries.add(country);
     }
 }
