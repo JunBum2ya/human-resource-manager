@@ -1,10 +1,12 @@
 package com.ecorich.hrservice.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Getter
 @Table(name = "employees")
 @Entity
 public class Employee {
