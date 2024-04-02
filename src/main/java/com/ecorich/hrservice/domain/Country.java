@@ -31,6 +31,7 @@ public class Country {
         Country country = Country.builder()
                 .id(id)
                 .name(name)
+                .region(region)
                 .build();
         region.addCountry(country);
         return country;
