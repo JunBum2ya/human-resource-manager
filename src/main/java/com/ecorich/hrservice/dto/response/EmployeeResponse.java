@@ -1,9 +1,6 @@
 package com.ecorich.hrservice.dto.response;
 
-import com.ecorich.hrservice.dto.DepartmentData;
 import com.ecorich.hrservice.dto.EmployeeData;
-import com.ecorich.hrservice.dto.JobData;
-import com.ecorich.hrservice.dto.ManagerData;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 

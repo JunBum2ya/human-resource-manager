@@ -29,7 +29,7 @@ public record EmployeeData(Long memberId,
                            JobData jobData,
                            Double salary,
                            Double commissionPct,
-                           ManagerData manager,
+                           SimpleEmployeeData manager,
                            DepartmentData department) {
     public static EmployeeData from(Employee employee) {
         return EmployeeData.builder()
@@ -42,7 +42,7 @@ public record EmployeeData(Long memberId,
                 .jobData(JobData.from(employee.getJob()))
                 .salary(employee.getSalary())
                 .commissionPct(employee.getCommissionPct())
-                .manager(ManagerData.from(employee.getManager()))
+                .manager(SimpleEmployeeData.from(employee.getManager()))
                 .department(DepartmentData.from(employee.getDepartment()))
                 .build();
     }

@@ -1,9 +1,17 @@
 package com.ecorich.hrservice.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "job_history", indexes = {@Index(columnList = "employee_id"), @Index(columnList = "start_date")})
 @Entity
 public class JobHistory {

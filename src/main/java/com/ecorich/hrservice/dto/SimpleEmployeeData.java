@@ -11,12 +11,12 @@ import lombok.Builder;
  * @param email
  */
 @Builder
-public record ManagerData(Long memberId, String firstName, String lastName, String email) {
-    public static ManagerData from(Employee employee) {
+public record SimpleEmployeeData(Long memberId, String firstName, String lastName, String email) {
+    public static SimpleEmployeeData from(Employee employee) {
         if(employee == null) {
             return null;
         }
-        return ManagerData.builder()
+        return SimpleEmployeeData.builder()
                 .memberId(employee.getId())
                 .firstName(employee.getFirstName())
                 .lastName(employee.getLastName())
