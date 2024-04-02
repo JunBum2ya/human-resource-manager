@@ -27,7 +27,11 @@ public class JobHistoryRepositoryCustomImpl extends QuerydslRepositorySupport im
     public Page<JobHistory> searchJobHistory(JobHistorySearchParam param, Pageable pageable) {
         QJobHistory jobHistory = QJobHistory.jobHistory;
         JPAQuery<JobHistory> query = jpaQueryFactory.selectFrom(jobHistory);
-        query.where(jobHistory.employee.id.eq(param.employeeId()));
+        query.where(
+                jobHistory.employee.id.eq(param.getEmployeeId())
+                        .and(param.getStartDate().map(jobHistory.startDate::after).orElse(null))
+                        .and(param.getEndDate().map(jobHistory.endDate::before).orElse(null))
+        );
         List<JobHistory> jobHistoryList = Objects.requireNonNull(this.getQuerydsl()).applyPagination(pageable, query).fetch();
         return new PageImpl<JobHistory>(jobHistoryList, pageable, query.fetchCount());
     }
