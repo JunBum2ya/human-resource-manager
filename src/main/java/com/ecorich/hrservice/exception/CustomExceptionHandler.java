@@ -48,6 +48,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CommonResponse> handleException(Exception e) {
         log.error(e.getMessage());
+        e.printStackTrace();
         return ResponseEntity.internalServerError().body(CommonResponse.of(ResultStatus.UNKNOWN_EXCEPTION));
     }
 
