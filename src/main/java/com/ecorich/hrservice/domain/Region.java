@@ -3,6 +3,7 @@ package com.ecorich.hrservice.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.LinkedList;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * 대륙
  */
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
