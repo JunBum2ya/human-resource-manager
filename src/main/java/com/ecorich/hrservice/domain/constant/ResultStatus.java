@@ -12,7 +12,7 @@ public enum ResultStatus {
     NOT_VALID_REQUEST("003", "필수 파라미터가 입력되지 않았습니다."),
     DUPLICATE_UNIQUE_PROPERTY("004", "중복된 값이 존재합니다."),
     USE_NOT_PERSIST_ENTITY("005", "DB에 저장되지 않은 객체입니다."),
-    NOT_SATISFY_PARAMETER_FORMAT("006", "입력 데이터를 다시한번 확인해주시십시오."),
+    NOT_SATISFY_PARAMETER_FORMAT("006", "입력 데이터를 다시한번 확인해 주십시오."),
     UNKNOWN_EXCEPTION("100", "알 수 없는 오류입니다.");
 
     private final String code;

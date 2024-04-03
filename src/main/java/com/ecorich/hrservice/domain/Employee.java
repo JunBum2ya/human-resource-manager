@@ -35,4 +35,18 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id")
     private Department department;
+
+    public void update(String firstName, String lastName, String email, String phoneNumber, LocalDate hireDate, Job job, Double salary, Double commissionPct, Employee manager, Department department) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.hireDate = hireDate;
+        this.job = job;
+        this.salary = salary;
+        this.commissionPct = commissionPct;
+        this.manager = manager;
+        this.department = department;
+    }
+
 }

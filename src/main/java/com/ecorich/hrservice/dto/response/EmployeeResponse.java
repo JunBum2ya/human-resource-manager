@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
-public record EmployeeResponse(Long memberId,
+public record EmployeeResponse(Long employeeId,
                                String firstName,
                                String lastName,
                                String email,
@@ -21,7 +21,7 @@ public record EmployeeResponse(Long memberId,
                                DepartmentResponse department) {
     public static EmployeeResponse from(EmployeeData employeeData) {
         return EmployeeResponse.builder()
-                .memberId(employeeData.memberId())
+                .employeeId(employeeData.employeeId())
                 .firstName(employeeData.firstName())
                 .lastName(employeeData.lastName())
                 .email(employeeData.email())

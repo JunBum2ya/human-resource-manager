@@ -20,7 +20,7 @@ import java.time.LocalDate;
  * @param department
  */
 @Builder
-public record EmployeeData(Long memberId,
+public record EmployeeData(Long employeeId,
                            String firstName,
                            String lastName,
                            String email,
@@ -33,7 +33,7 @@ public record EmployeeData(Long memberId,
                            DepartmentData department) {
     public static EmployeeData from(Employee employee) {
         return EmployeeData.builder()
-                .memberId(employee.getId())
+                .employeeId(employee.getId())
                 .firstName(employee.getFirstName())
                 .lastName(employee.getLastName())
                 .email(employee.getEmail())
