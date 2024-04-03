@@ -49,4 +49,12 @@ public class Employee {
         this.department = department;
     }
 
+    /**
+     * 임금 인상 메소드
+     * @param rate
+     */
+    public void updateSalary(Double rate) {
+        this.salary = this.salary * ((100 + rate) / 100);
+    }
+
 }
