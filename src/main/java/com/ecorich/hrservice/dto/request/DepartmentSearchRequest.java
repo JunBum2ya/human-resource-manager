@@ -1,9 +1,11 @@
 package com.ecorich.hrservice.dto.request;
 
 import com.ecorich.hrservice.dto.param.DepartmentSearchParam;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 public class DepartmentSearchRequest {

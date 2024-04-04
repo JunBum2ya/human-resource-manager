@@ -1,9 +1,11 @@
 package com.ecorich.hrservice.dto.request;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Getter
 @Setter
 public class UpdateDepartmentSalaryRequest {
