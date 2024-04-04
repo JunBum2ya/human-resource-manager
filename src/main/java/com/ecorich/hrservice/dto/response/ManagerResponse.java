@@ -10,7 +10,7 @@ public record ManagerResponse(Long memberId, String firstName, String lastName, 
             return null;
         }
         return ManagerResponse.builder()
-                .memberId(simpleEmployeeData.memberId())
+                .memberId(simpleEmployeeData.employeeId())
                 .firstName(simpleEmployeeData.firstName())
                 .lastName(simpleEmployeeData.lastName())
                 .email(simpleEmployeeData.email())
