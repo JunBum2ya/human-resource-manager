@@ -24,6 +24,10 @@ spring:
   sql:
     init:
       mode: always
+public-api:
+  pet-attract:
+    url: http://api.kcisa.kr/openapi/API_TOU_050/request
+    key: d30829ef-9e80-47e0-81ba-775e415dec55
 
 ---
 

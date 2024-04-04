@@ -8,6 +8,7 @@ import com.ecorich.hrservice.exception.CustomException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -19,18 +20,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class PublicApiService {
 
+    @Value("${public-api.pet-attract.url}")
+    private String petAttractUrl;
+    @Value("${public-api.pet-attract.key}")
+    private String petAttractKey;
+
     private final ApiConnector apiConnector;
     private final ObjectMapper objectMapper;
 
     public Page<PetAttractItem> searchPetAttract(int page, int size, String keyword) throws CustomException {
-        String serviceKey = "d30829ef-9e80-47e0-81ba-775e415dec55";
-        String baseUrl = String.format("http://api.kcisa.kr/openapi/API_TOU_050/request?serviceKey=%s&pageNo=%d&numOfRows=%d%s",serviceKey,page,size,keyword != null ? "&keyword=" + keyword : "");
+        String baseUrl = String.format("%s?serviceKey=%s&pageNo=%d&numOfRows=%d%s",petAttractUrl,petAttractKey,page,size,keyword != null ? "&keyword=" + keyword : "");
         String apiResult = apiConnector.connect(baseUrl);
         try {
             PetAttractResult result = objectMapper.readValue(apiResult, PetAttractResult.class);
             return new PageImpl<>(result.getItems(), PageRequest.of(page,size),result.getTotalCount());
         }catch (Exception e) {
-            e.printStackTrace();
             throw new CustomException(ResultStatus.UNKNOWN_EXCEPTION);
         }
     }
