@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@DisplayName("View 컨트롤러 - 직원")
+@DisplayName("View 컨트롤러 - 부서")
 @WebMvcTest(DepartmentRestController.class)
 public class DepartmentRestControllerTest {
 
