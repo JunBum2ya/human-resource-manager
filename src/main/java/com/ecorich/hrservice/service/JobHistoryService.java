@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Service
 public class JobHistoryService {
+
     private final JobHistoryRepository jobHistoryRepository;
 
     /**
