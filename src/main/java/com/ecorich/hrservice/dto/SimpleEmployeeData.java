@@ -11,7 +11,7 @@ import lombok.Builder;
  * @param email
  */
 @Builder
-public record SimpleEmployeeData(Long employeeId, String firstName, String lastName, String email) {
+public record SimpleEmployeeData(Long employeeId, String firstName, String lastName, String email, Double salary) {
     public static SimpleEmployeeData from(Employee employee) {
         if(employee == null) {
             return null;
@@ -21,6 +21,7 @@ public record SimpleEmployeeData(Long employeeId, String firstName, String lastN
                 .firstName(employee.getFirstName())
                 .lastName(employee.getLastName())
                 .email(employee.getEmail())
+                .salary(employee.getSalary())
                 .build();
     }
 }
