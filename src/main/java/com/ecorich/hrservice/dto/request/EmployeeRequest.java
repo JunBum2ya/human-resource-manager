@@ -12,6 +12,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
+/**
+ * 직원 수정 파라미터 포맷
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

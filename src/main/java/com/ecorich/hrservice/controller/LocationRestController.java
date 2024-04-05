@@ -5,6 +5,10 @@ import com.ecorich.hrservice.dto.request.LocationSearchRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
 import com.ecorich.hrservice.dto.response.LocationResponse;
 import com.ecorich.hrservice.service.LocationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "LOCATION API", description = "위치 API")
 @RequiredArgsConstructor
 @RequestMapping("/location")
 @RestController
@@ -28,6 +33,16 @@ public class LocationRestController {
      * @param pageable
      * @return
      */
+    @Operation(summary = "위치 검색 API", description = "파라미터를 사용하여 위치 정보 검색")
+    @Parameters({
+            @Parameter(name = "locationId", description = "위치 아이디"),
+            @Parameter(name = "streetAddress", description = "도로명 주소"),
+            @Parameter(name = "postalCode", description = "우편번호"),
+            @Parameter(name = "city", description = "도시명"),
+            @Parameter(name = "stateProvince", description = "시도명"),
+            @Parameter(name = "countryId", description = "국가 아이디"),
+            @Parameter(name = "regionId", description = "대륙 아이디")
+    })
     @GetMapping
     public ResponseEntity<CommonResponse<Page<LocationResponse>>> searchLocation(
             LocationSearchRequest request,

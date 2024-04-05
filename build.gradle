@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.4'
     id 'io.spring.dependency-management' version '1.1.4'
-    id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
 
 group = 'com.ecorich'
@@ -22,10 +21,6 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('snippetsDir', file("build/generated-snippets"))
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -37,17 +32,13 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     //querydsl
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta' //QueryDsl 라이브러리
     annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta" //Q클래스 생성 라이브러리
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
-}
-
-tasks.named('test') {
-    outputs.dir snippetsDir
-    useJUnitPlatform()
+    //swagger
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
 }
 
 //Q클래스 생성 위치 설정
@@ -60,10 +51,6 @@ sourceSets {
     }
 }
 
-tasks.named('asciidoctor') {
-    inputs.dir snippetsDir
-    dependsOn test
-}
 compileJava {
     options.compilerArgs << '-Aquerydsl.generatedAnnotationClass=javax.annotation.Generated'
 }
