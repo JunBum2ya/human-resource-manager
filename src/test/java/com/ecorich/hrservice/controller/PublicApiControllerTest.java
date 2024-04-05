@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@DisplayName("View 컨트롤러 - 위치")
+@DisplayName("View 컨트롤러 - 공공데이터")
 @WebMvcTest(PublicApiRestController.class)
 public class PublicApiControllerTest {
 
