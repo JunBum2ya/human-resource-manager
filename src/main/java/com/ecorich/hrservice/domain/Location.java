@@ -25,7 +25,7 @@ public class Location {
     private String city;
     @Column(length = 25)
     private String stateProvince;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "country_id")
     private Country country;
 

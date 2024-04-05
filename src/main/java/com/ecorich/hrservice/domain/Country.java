@@ -18,12 +18,13 @@ public class Country {
     private String id;
     @Column(name = "country_name", length = 40)
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "region_id")
     private Region region;
 
     /**
      * 팩토리 메소드
+     *
      * @param id
      * @param name
      * @param region
