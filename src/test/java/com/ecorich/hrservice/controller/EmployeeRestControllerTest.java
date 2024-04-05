@@ -1,6 +1,5 @@
 package com.ecorich.hrservice.controller;
 
-import com.ecorich.hrservice.component.FormDataEncoder;
 import com.ecorich.hrservice.dto.DepartmentData;
 import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.JobData;
