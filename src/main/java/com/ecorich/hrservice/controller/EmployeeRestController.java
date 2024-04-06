@@ -48,21 +48,9 @@ public class EmployeeRestController {
      * @return 수정된 직원 정보
      */
     @Operation(summary = "직원 정보 수정", description = "직원 정보를 수정한다.")
-    @Parameters({
-            @Parameter(name = "jobId", description = "역할 아이디", example = "1", required = true),
-            @Parameter(name = "managerId", description = "관리자 아이디", example = "2", required = true),
-            @Parameter(name = "departmentId", description = "부서 아이디", example = "4"),
-            @Parameter(name = "firstName", description = "이름", example = "happy"),
-            @Parameter(name = "lastName", description = "성씨", example = "Lee", required = true),
-            @Parameter(name = "email", description = "이메일", example = "happy@test.com", required = true),
-            @Parameter(name = "phoneNumber", description = "휴대폰 번호", example = "010-1234-5678"),
-            @Parameter(name = "hireDate", description = "채용일자", example = "2024-04-05", required = true),
-            @Parameter(name = "salary", description = "임금", example = "40000"),
-            @Parameter(name = "commissionPct", description = "commission 비율", example = "405.94")
-    })
     @PutMapping("/{employeeId}")
     public ResponseEntity<CommonResponse<EmployeeResponse>> updateEmployee(
-            @Parameter(name = "employeeId", description = "직원 아이디", example = "1",required = true) @PathVariable Long employeeId,
+            @Parameter(name = "employeeId", description = "직원 아이디", example = "200",required = true) @PathVariable Long employeeId,
             @Valid @RequestBody EmployeeRequest request
     ) {
         EmployeeData employeeData = employeeService.updateEmployee(employeeId, request.getJobId(), request.getManagerId(), request.getDepartmentId(), request.toDto());

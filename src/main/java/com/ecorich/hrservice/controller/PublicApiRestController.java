@@ -36,7 +36,7 @@ public class PublicApiRestController {
             @Parameter(name = "keyword", description = "제목 검색 파라미터")
     })
     @GetMapping("/pet-attract")
-    public ResponseEntity<CommonResponse<Page<PetAttractResponse>>> searchPetAttract(PetAttractRequest request) {
+    public ResponseEntity<CommonResponse<Page<PetAttractResponse>>> searchPetAttract(@Parameter(hidden = true) PetAttractRequest request) {
         Page<PetAttractItem> page = publicApiService.searchPetAttract(request.page(), request.size(), request.keyword());
         return ResponseEntity.ok(CommonResponse.of(page.map(PetAttractResponse::from)));
     }

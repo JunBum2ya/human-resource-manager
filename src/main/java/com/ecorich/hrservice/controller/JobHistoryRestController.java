@@ -33,14 +33,16 @@ public class JobHistoryRestController {
      */
     @Operation(summary = "이력 조회 API", description = "직원의 이력 중 개시일자와 종료일자의 범위로 조회한다.")
     @Parameters({
-            @Parameter(name = "startDate", description = "개시일자 한계"),
-            @Parameter(name = "endDate", description = "종료일자 한계")
+            @Parameter(name = "startDate", description = "개시일자 한계", example = "2023-12-01"),
+            @Parameter(name = "endDate", description = "종료일자 한계", example = "2024-01-01"),
+            @Parameter(name = "page", description = "페이지 번호", example = "0"),
+            @Parameter(name = "size", description = "페이지 크기", example = "10")
     })
     @GetMapping("/{employeeId}")
     public ResponseEntity<CommonResponse<Page<JobHistoryData>>> searchJobHistory(
             @Parameter(name = "employeeId", description = "직원 아이디", required = true) @PathVariable Long employeeId,
-            JobHistorySearchRequest request,
-            @PageableDefault(size = 10, sort = {"startDate"}, direction = Sort.Direction.DESC) Pageable pageable
+            @Parameter(hidden = true) JobHistorySearchRequest request,
+            @Parameter(hidden = true) @PageableDefault(size = 10, sort = {"startDate"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
         JobHistorySearchParam param = request.toJobHistorySearchParam(employeeId);
         Page<JobHistoryData> page = jobHistoryService.searchJobHistory(param, pageable);

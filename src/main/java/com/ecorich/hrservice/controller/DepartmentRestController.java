@@ -41,12 +41,14 @@ public class DepartmentRestController {
     @Parameters({
             @Parameter(name = "departmentId", description = "부서 아이디(일치)", example = "1"),
             @Parameter(name = "departmentName", description = "부서명(부분일치)", example = "HR"),
-            @Parameter(name = "locationId", description = "위치 아이디(일치)", example = "2")
+            @Parameter(name = "locationId", description = "위치 아이디(일치)", example = "2"),
+            @Parameter(name = "page", description = "페이지 번호", example = "0"),
+            @Parameter(name = "size", description = "페이지 크기", example = "10")
     })
     @GetMapping
     public ResponseEntity<CommonResponse<Page<DepartmentResponse>>> searchDepartment(
-            DepartmentSearchRequest request,
-            @PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+            @Parameter(hidden = true) DepartmentSearchRequest request,
+            @Parameter(hidden = true) @PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Page<DepartmentData> page = departmentService.searchDepartment(request.toDepartmentSearchParam(),pageable);
         return ResponseEntity.ok(CommonResponse.of(page.map(DepartmentResponse::from)));
@@ -59,12 +61,9 @@ public class DepartmentRestController {
      * @return
      */
     @Operation(summary = "임금 일괄 수정", description = "부서내 직원들의 임금을 일괄적으로 인상")
-    @Parameters({
-            @Parameter(name = "rate", description = "임금 인상 비율", example = "4.3", required = true)
-    })
     @PutMapping("/{departmentId}")
     public ResponseEntity<CommonResponse<List<SimpleEmployeeData>>> updateSalaryInDepartment(
-            @Parameter(name = "departmentId", description = "부서 아이디", example = "3", required = true) @PathVariable Long departmentId,
+            @Parameter(name = "departmentId", description = "부서 아이디", example = "10", required = true) @PathVariable Long departmentId,
             @Valid @RequestBody UpdateDepartmentSalaryRequest request
     ) {
         List<SimpleEmployeeData> employeeList = departmentService.updateDepartmentSalary(departmentId, request.getRate());

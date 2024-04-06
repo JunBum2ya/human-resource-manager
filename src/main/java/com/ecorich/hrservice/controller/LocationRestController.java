@@ -41,12 +41,14 @@ public class LocationRestController {
             @Parameter(name = "city", description = "도시명"),
             @Parameter(name = "stateProvince", description = "시도명"),
             @Parameter(name = "countryId", description = "국가 아이디"),
-            @Parameter(name = "regionId", description = "대륙 아이디")
+            @Parameter(name = "regionId", description = "대륙 아이디"),
+            @Parameter(name = "page",description = "페이지 번호", example = "0"),
+            @Parameter(name = "size",description = "페이지 크기", example = "10")
     })
     @GetMapping
     public ResponseEntity<CommonResponse<Page<LocationResponse>>> searchLocation(
-            LocationSearchRequest request,
-            @PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
+            @Parameter(hidden = true) LocationSearchRequest request,
+            @Parameter(hidden = true) @PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
         Page<LocationWithCountryAndRegionData> page = locationService.searchLocation(request.toLocationSearchParam(),pageable);
         return ResponseEntity.ok(CommonResponse.of(page.map(LocationResponse::from)));
