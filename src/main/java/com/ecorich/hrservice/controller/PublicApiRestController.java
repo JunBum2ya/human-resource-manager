@@ -31,8 +31,8 @@ public class PublicApiRestController {
      */
     @Operation(summary = "반려동물 동행가능한 장소 API", description = "반려동물 동행가능한 장소 조회 API")
     @Parameters({
-            @Parameter(name = "page", description = "페이지 번호"),
-            @Parameter(name = "size", description = "페이지 크기"),
+            @Parameter(name = "page", description = "페이지 번호", example = "1"),
+            @Parameter(name = "size", description = "페이지 크기", example = "10"),
             @Parameter(name = "keyword", description = "제목 검색 파라미터")
     })
     @GetMapping("/pet-attract")
