@@ -1,8 +1,8 @@
 package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.*;
-import com.ecorich.hrservice.dto.DepartmentData;
 import com.ecorich.hrservice.dto.EmployeeData;
+import com.ecorich.hrservice.dto.EmployeeDetailData;
 import com.ecorich.hrservice.repository.DepartmentRepository;
 import com.ecorich.hrservice.repository.EmployeeRepository;
 import com.ecorich.hrservice.repository.JobRepository;
@@ -43,7 +43,7 @@ public class EmployeeServiceTest {
         long employeeId = 3L;
         given(employeeRepository.findById(any(Long.class))).willReturn(Optional.of(createEmployee(employeeId)));
         //when
-        Optional<EmployeeData> employeeData = sut.getEmployee(employeeId);
+        Optional<EmployeeDetailData> employeeData = sut.getEmployee(employeeId);
         //then
         assertThat(employeeData).isNotEmpty();
         assertThat(employeeData.get().employeeId()).isEqualTo(employeeId);
@@ -64,7 +64,7 @@ public class EmployeeServiceTest {
         given(jobRepository.getReferenceById(any(String.class))).willReturn(createJob(jobId));
         given(departmentRepository.getReferenceById(any(Long.class))).willReturn(createDepartment(departmentId));
         //when
-        EmployeeData employeeData = sut.updateEmployee(employeeId,jobId,managerId,departmentId,updateParameter);
+        EmployeeDetailData employeeData = sut.updateEmployee(employeeId,jobId,managerId,departmentId,updateParameter);
         //then
         assertThat(employeeData).isNotNull();
         assertThat(employeeData.employeeId()).isEqualTo(employeeId);

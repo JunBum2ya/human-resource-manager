@@ -1,9 +1,7 @@
 package com.ecorich.hrservice.dto.request;
 
-import com.ecorich.hrservice.dto.DepartmentData;
 import com.ecorich.hrservice.dto.EmployeeData;
-import com.ecorich.hrservice.dto.JobData;
-import com.ecorich.hrservice.dto.SimpleEmployeeData;
+import com.ecorich.hrservice.dto.EmployeeDetailData;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

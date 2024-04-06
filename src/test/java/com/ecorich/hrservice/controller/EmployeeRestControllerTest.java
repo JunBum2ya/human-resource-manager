@@ -1,9 +1,9 @@
 package com.ecorich.hrservice.controller;
 
 import com.ecorich.hrservice.dto.DepartmentData;
-import com.ecorich.hrservice.dto.EmployeeData;
+import com.ecorich.hrservice.dto.EmployeeDetailData;
 import com.ecorich.hrservice.dto.JobData;
-import com.ecorich.hrservice.dto.SimpleEmployeeData;
+import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.request.EmployeeRequest;
 import com.ecorich.hrservice.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -88,8 +87,8 @@ public class EmployeeRestControllerTest {
         then(employeeService).should().updateEmployee(any(Long.class),any(String.class),any(Long.class),any(Long.class),any(EmployeeData.class));
     }
 
-    private EmployeeData createEmployeeData(Long employeeId) {
-        return EmployeeData.builder()
+    private EmployeeDetailData createEmployeeData(Long employeeId) {
+        return EmployeeDetailData.builder()
                 .employeeId(employeeId)
                 .firstName("first")
                 .lastName("last")
@@ -108,7 +107,7 @@ public class EmployeeRestControllerTest {
                         .departmentId(1L)
                         .departmentName("QA")
                         .build())
-                .manager(SimpleEmployeeData.builder()
+                .manager(EmployeeData.builder()
                         .employeeId(5L)
                         .build())
                 .build();

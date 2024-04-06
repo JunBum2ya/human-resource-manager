@@ -6,31 +6,16 @@ import lombok.Builder;
 import java.time.LocalDate;
 
 /**
- * 직원 DTO
- * @param memberId
+ * 관리자 정보 DTO
+ *
+ * @param employeeId
  * @param firstName
  * @param lastName
  * @param email
- * @param phoneNumber
- * @param hireDate
- * @param jobData
- * @param salary
- * @param commissionPct
- * @param manager
- * @param department
  */
 @Builder
-public record EmployeeData(Long employeeId,
-                           String firstName,
-                           String lastName,
-                           String email,
-                           String phoneNumber,
-                           LocalDate hireDate,
-                           JobData jobData,
-                           Double salary,
-                           Double commissionPct,
-                           SimpleEmployeeData manager,
-                           DepartmentData department) {
+public record EmployeeData(Long employeeId, String firstName, String lastName, String email, String phoneNumber,
+                           LocalDate hireDate, Double salary, Double commissionPct) {
     public static EmployeeData from(Employee employee) {
         return EmployeeData.builder()
                 .employeeId(employee.getId())
@@ -39,11 +24,8 @@ public record EmployeeData(Long employeeId,
                 .email(employee.getEmail())
                 .phoneNumber(employee.getPhoneNumber())
                 .hireDate(employee.getHireDate())
-                .jobData(JobData.from(employee.getJob()))
                 .salary(employee.getSalary())
                 .commissionPct(employee.getCommissionPct())
-                .manager(SimpleEmployeeData.from(employee.getManager()))
-                .department(DepartmentData.from(employee.getDepartment()))
                 .build();
     }
 }

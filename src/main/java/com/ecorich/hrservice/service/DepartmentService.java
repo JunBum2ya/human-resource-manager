@@ -1,9 +1,8 @@
 package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.Department;
-import com.ecorich.hrservice.domain.Employee;
 import com.ecorich.hrservice.dto.DepartmentData;
-import com.ecorich.hrservice.dto.SimpleEmployeeData;
+import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.param.DepartmentSearchParam;
 import com.ecorich.hrservice.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,9 +38,9 @@ public class DepartmentService {
      * @param rate
      * @return
      */
-    public List<SimpleEmployeeData> updateDepartmentSalary(Long departmentId, Double rate) {
+    public List<EmployeeData> updateDepartmentSalary(Long departmentId, Double rate) {
         Department department = departmentRepository.getReferenceById(departmentId);
         department.getEmployeeList().forEach(employee -> employee.updateSalary(rate));
-        return department.getEmployeeList().stream().map(SimpleEmployeeData::from).toList();
+        return department.getEmployeeList().stream().map(EmployeeData::from).toList();
     }
 }

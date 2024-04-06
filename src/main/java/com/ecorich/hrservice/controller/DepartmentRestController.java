@@ -1,7 +1,7 @@
 package com.ecorich.hrservice.controller;
 
 import com.ecorich.hrservice.dto.DepartmentData;
-import com.ecorich.hrservice.dto.SimpleEmployeeData;
+import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.request.DepartmentSearchRequest;
 import com.ecorich.hrservice.dto.request.UpdateDepartmentSalaryRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -62,11 +61,11 @@ public class DepartmentRestController {
      */
     @Operation(summary = "임금 일괄 수정", description = "부서내 직원들의 임금을 일괄적으로 인상")
     @PutMapping("/{departmentId}")
-    public ResponseEntity<CommonResponse<List<SimpleEmployeeData>>> updateSalaryInDepartment(
+    public ResponseEntity<CommonResponse<List<EmployeeData>>> updateSalaryInDepartment(
             @Parameter(name = "departmentId", description = "부서 아이디", example = "10", required = true) @PathVariable Long departmentId,
             @Valid @RequestBody UpdateDepartmentSalaryRequest request
     ) {
-        List<SimpleEmployeeData> employeeList = departmentService.updateDepartmentSalary(departmentId, request.getRate());
+        List<EmployeeData> employeeList = departmentService.updateDepartmentSalary(departmentId, request.getRate());
         return ResponseEntity.ok(CommonResponse.of(employeeList));
     }
 }
