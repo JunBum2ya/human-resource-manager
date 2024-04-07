@@ -2,6 +2,7 @@ package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.*;
 import com.ecorich.hrservice.dto.DepartmentData;
+import com.ecorich.hrservice.dto.DepartmentDetailData;
 import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.param.DepartmentSearchParam;
 import com.ecorich.hrservice.repository.DepartmentRepository;
@@ -46,7 +47,7 @@ public class DepartmentServiceTest {
         given(departmentRepository.searchDepartment(any(DepartmentSearchParam.class),any(Pageable.class)))
                 .willReturn(new PageImpl<>(List.of(createDepartment(1L),createDepartment(2L)),pageable,2));
         //when
-        Page<DepartmentData> page = sut.searchDepartment(param,pageable);
+        Page<DepartmentDetailData> page = sut.searchDepartment(param,pageable);
         //then
         assertThat(page).isNotEmpty();
         assertThat(page.getTotalElements()).isEqualTo(2);
