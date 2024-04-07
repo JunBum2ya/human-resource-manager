@@ -58,6 +58,11 @@ compileJava {
 tasks.withType(JavaCompile) {
     options.generatedSourceOutputDirectory = file(querydslSrcDir)
 }
+
+bootJar {
+    archiveFileName = 'app.jar'
+}
+
 clean {
     // clean 실행 시 생성된 QClass 삭제
     delete file(querydslSrcDir)

@@ -1,18 +1,27 @@
 version: '3.8'
-
 services:
-  db:
+  employee-database:
+    container_name: EMPLOYEE-DATABASE
     image: mysql:latest
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: eco_and_rich
+      MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       MYSQL_DATABASE: EMPLOYEE_DB
-      MYSQL_USER: dbuser
-      MYSQL_PASSWORD: dbuser
+      MYSQL_USER: ${SPRING_DATASOURCE_USERNAME}
+      MYSQL_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
     ports:
       - "13306:3306"
     volumes:
-      - C:/leejunbum/docker/mysql/data:/var/lib/mysql:rw  # 데이터 볼륨 마운트
-
-volumes:
-  db_data:
+      - ./database/config:/etc/mysql/conf.d  # 데이터 볼륨 마운트
+  employee-spring-app:
+    container_name: EMPLOYEE-SPRING-APP
+    build: .
+    depends_on:
+      - employee-database
+    image: 22cun2/employee-spring-app
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+    ports:
+      - "80:8080"
+    restart: always

@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: eco_and_rich
+      MYSQL_DATABASE: EMPLOYEE_DB
+      MYSQL_USER: ${SPRING_DATASOURCE_USERNAME}
+      MYSQL_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./database/config:/etc/mysql/conf.d  # DB 설정
+volumes:
+  db_data:
