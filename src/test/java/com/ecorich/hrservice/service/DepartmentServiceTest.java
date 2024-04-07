@@ -2,8 +2,8 @@ package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.*;
 import com.ecorich.hrservice.dto.DepartmentData;
+import com.ecorich.hrservice.dto.DepartmentDetailData;
 import com.ecorich.hrservice.dto.EmployeeData;
-import com.ecorich.hrservice.dto.SimpleEmployeeData;
 import com.ecorich.hrservice.dto.param.DepartmentSearchParam;
 import com.ecorich.hrservice.repository.DepartmentRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -47,7 +47,7 @@ public class DepartmentServiceTest {
         given(departmentRepository.searchDepartment(any(DepartmentSearchParam.class),any(Pageable.class)))
                 .willReturn(new PageImpl<>(List.of(createDepartment(1L),createDepartment(2L)),pageable,2));
         //when
-        Page<DepartmentData> page = sut.searchDepartment(param,pageable);
+        Page<DepartmentDetailData> page = sut.searchDepartment(param,pageable);
         //then
         assertThat(page).isNotEmpty();
         assertThat(page.getTotalElements()).isEqualTo(2);
@@ -64,7 +64,7 @@ public class DepartmentServiceTest {
         double rate = 50.0;
         given(departmentRepository.getReferenceById(any(Long.class))).willReturn(createDepartment(3L));
         //when
-        List<SimpleEmployeeData> employeeDataList = sut.updateDepartmentSalary(departmentId,rate);
+        List<EmployeeData> employeeDataList = sut.updateDepartmentSalary(departmentId,rate);
         //then
         assertThat(employeeDataList).isNotEmpty();
         assertThat(employeeDataList).hasSize(2);

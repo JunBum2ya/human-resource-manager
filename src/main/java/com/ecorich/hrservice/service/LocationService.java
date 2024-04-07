@@ -1,7 +1,7 @@
 package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.Location;
-import com.ecorich.hrservice.dto.LocationWithCountryAndRegionData;
+import com.ecorich.hrservice.dto.LocationDetailData;
 import com.ecorich.hrservice.dto.param.LocationSearchParam;
 import com.ecorich.hrservice.repository.LocationRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +24,9 @@ public class LocationService {
      * @return
      */
     @Transactional(readOnly = true)
-    public Page<LocationWithCountryAndRegionData> searchLocation(LocationSearchParam param, Pageable pageable) {
+    public Page<LocationDetailData> searchLocation(LocationSearchParam param, Pageable pageable) {
         Page<Location> page = locationRepository.searchLocation(param,pageable);
-        return page.map(LocationWithCountryAndRegionData::from);
+        return page.map(LocationDetailData::from);
     }
 
 }

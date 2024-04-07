@@ -1,11 +1,22 @@
 package com.ecorich.hrservice.dto.response;
 
-import com.ecorich.hrservice.dto.CountryWithRegionData;
-import com.ecorich.hrservice.dto.LocationWithCountryAndRegionData;
+import com.ecorich.hrservice.dto.LocationDetailData;
 import lombok.Builder;
 
+/**
+ * 위치 응답 포맷
+ * @param locationId
+ * @param streetAddress
+ * @param postalCode
+ * @param city
+ * @param stateProvince
+ * @param countryId
+ * @param countryName
+ * @param regionId
+ * @param regionName
+ */
 @Builder
-public record LocationResponse(
+public record LocationDetailResponse(
         Long locationId,
         String streetAddress,
         String postalCode,
@@ -16,8 +27,8 @@ public record LocationResponse(
         Long regionId,
         String regionName
 ) {
-    public static LocationResponse from(LocationWithCountryAndRegionData data) {
-        return LocationResponse.builder()
+    public static LocationDetailResponse from(LocationDetailData data) {
+        return LocationDetailResponse.builder()
                 .locationId(data.locationId())
                 .streetAddress(data.streetAddress())
                 .postalCode(data.postalCode())

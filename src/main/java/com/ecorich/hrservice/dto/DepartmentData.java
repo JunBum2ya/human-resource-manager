@@ -11,9 +11,6 @@ import lombok.Builder;
 @Builder
 public record DepartmentData(Long departmentId, String departmentName) {
     public static DepartmentData from(Department department) {
-        if(department == null) {
-            return null;
-        }
         return DepartmentData.builder()
                 .departmentId(department.getId())
                 .departmentName(department.getName())

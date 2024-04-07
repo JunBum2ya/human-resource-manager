@@ -1,13 +1,12 @@
 package com.ecorich.hrservice.controller;
 
-import com.ecorich.hrservice.dto.EmployeeData;
+import com.ecorich.hrservice.dto.EmployeeDetailData;
 import com.ecorich.hrservice.dto.request.EmployeeRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
-import com.ecorich.hrservice.dto.response.EmployeeResponse;
+import com.ecorich.hrservice.dto.response.EmployeeDetailResponse;
 import com.ecorich.hrservice.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +32,9 @@ public class EmployeeRestController {
      */
     @Operation(summary = "직원 상세 조회", description = "아이디를 입력받아 상세하게 조회한다.")
     @GetMapping("/{employeeId}")
-    public ResponseEntity<CommonResponse<EmployeeResponse>> searchDetailEmployee(@Parameter(name = "employeeId", description = "직원 아이디", required = true) @PathVariable("employeeId") Long employeeId) {
-        EmployeeResponse response = employeeService.getEmployee(employeeId)
-                .map(EmployeeResponse::from)
+    public ResponseEntity<CommonResponse<EmployeeDetailResponse>> searchDetailEmployee(@Parameter(name = "employeeId", description = "직원 아이디", required = true) @PathVariable("employeeId") Long employeeId) {
+        EmployeeDetailResponse response = employeeService.getEmployee(employeeId)
+                .map(EmployeeDetailResponse::from)
                 .orElse(null);
         return ResponseEntity.ok(CommonResponse.of(response));
     }
@@ -49,11 +48,11 @@ public class EmployeeRestController {
      */
     @Operation(summary = "직원 정보 수정", description = "직원 정보를 수정한다.")
     @PutMapping("/{employeeId}")
-    public ResponseEntity<CommonResponse<EmployeeResponse>> updateEmployee(
+    public ResponseEntity<CommonResponse<EmployeeDetailResponse>> updateEmployee(
             @Parameter(name = "employeeId", description = "직원 아이디", example = "200",required = true) @PathVariable Long employeeId,
             @Valid @RequestBody EmployeeRequest request
     ) {
-        EmployeeData employeeData = employeeService.updateEmployee(employeeId, request.getJobId(), request.getManagerId(), request.getDepartmentId(), request.toDto());
-        return ResponseEntity.ok(CommonResponse.of(EmployeeResponse.from(employeeData)));
+        EmployeeDetailData employeeData = employeeService.updateEmployee(employeeId, request.getJobId(), request.getManagerId(), request.getDepartmentId(), request.toDto());
+        return ResponseEntity.ok(CommonResponse.of(EmployeeDetailResponse.from(employeeData)));
     }
 }

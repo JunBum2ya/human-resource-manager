@@ -1,9 +1,9 @@
 package com.ecorich.hrservice.controller;
 
-import com.ecorich.hrservice.dto.LocationWithCountryAndRegionData;
+import com.ecorich.hrservice.dto.LocationDetailData;
 import com.ecorich.hrservice.dto.request.LocationSearchRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
-import com.ecorich.hrservice.dto.response.LocationResponse;
+import com.ecorich.hrservice.dto.response.LocationDetailResponse;
 import com.ecorich.hrservice.service.LocationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -46,12 +46,12 @@ public class LocationRestController {
             @Parameter(name = "size",description = "페이지 크기", example = "10")
     })
     @GetMapping
-    public ResponseEntity<CommonResponse<Page<LocationResponse>>> searchLocation(
+    public ResponseEntity<CommonResponse<Page<LocationDetailResponse>>> searchLocation(
             @Parameter(hidden = true) LocationSearchRequest request,
             @Parameter(hidden = true) @PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Page<LocationWithCountryAndRegionData> page = locationService.searchLocation(request.toLocationSearchParam(),pageable);
-        return ResponseEntity.ok(CommonResponse.of(page.map(LocationResponse::from)));
+        Page<LocationDetailData> page = locationService.searchLocation(request.toLocationSearchParam(),pageable);
+        return ResponseEntity.ok(CommonResponse.of(page.map(LocationDetailResponse::from)));
     }
 
 }

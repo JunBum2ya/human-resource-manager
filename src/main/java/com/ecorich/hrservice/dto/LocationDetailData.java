@@ -4,11 +4,11 @@ import com.ecorich.hrservice.domain.Location;
 import lombok.Builder;
 
 @Builder
-public record LocationWithCountryAndRegionData(Long locationId, String streetAddress, String postalCode, String city,
-                                               String stateProvince, CountryWithRegionData country) {
+public record LocationDetailData(Long locationId, String streetAddress, String postalCode, String city,
+                                 String stateProvince, CountryWithRegionData country) {
 
-    public static LocationWithCountryAndRegionData from(Location location) {
-        return LocationWithCountryAndRegionData.builder()
+    public static LocationDetailData from(Location location) {
+        return LocationDetailData.builder()
                 .locationId(location.getId())
                 .streetAddress(location.getStreetAddress())
                 .postalCode(location.getPostalCode())

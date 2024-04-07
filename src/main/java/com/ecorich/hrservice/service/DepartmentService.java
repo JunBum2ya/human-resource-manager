@@ -1,9 +1,9 @@
 package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.Department;
-import com.ecorich.hrservice.domain.Employee;
 import com.ecorich.hrservice.dto.DepartmentData;
-import com.ecorich.hrservice.dto.SimpleEmployeeData;
+import com.ecorich.hrservice.dto.DepartmentDetailData;
+import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.param.DepartmentSearchParam;
 import com.ecorich.hrservice.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +28,9 @@ public class DepartmentService {
      * @return
      */
     @Transactional(readOnly = true)
-    public Page<DepartmentData> searchDepartment(DepartmentSearchParam param, Pageable pageable) {
+    public Page<DepartmentDetailData> searchDepartment(DepartmentSearchParam param, Pageable pageable) {
         Page<Department> page = departmentRepository.searchDepartment(param,pageable);
-        return page.map(DepartmentData::from);
+        return page.map(DepartmentDetailData::from);
     }
 
     /**
@@ -39,9 +39,9 @@ public class DepartmentService {
      * @param rate
      * @return
      */
-    public List<SimpleEmployeeData> updateDepartmentSalary(Long departmentId, Double rate) {
+    public List<EmployeeData> updateDepartmentSalary(Long departmentId, Double rate) {
         Department department = departmentRepository.getReferenceById(departmentId);
         department.getEmployeeList().forEach(employee -> employee.updateSalary(rate));
-        return department.getEmployeeList().stream().map(SimpleEmployeeData::from).toList();
+        return department.getEmployeeList().stream().map(EmployeeData::from).toList();
     }
 }
