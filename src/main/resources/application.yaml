@@ -52,6 +52,6 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
+    url: jdbc:mysql://employee-rds.czqoei2oylqq.ap-northeast-2.rds.amazonaws.com:3306/employee
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
