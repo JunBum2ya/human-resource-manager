@@ -4,6 +4,7 @@ import com.ecorich.hrservice.dto.JobHistoryDetailData;
 import com.ecorich.hrservice.dto.param.JobHistorySearchParam;
 import com.ecorich.hrservice.dto.request.JobHistorySearchRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
+import com.ecorich.hrservice.dto.response.JobHistoryDetailResponse;
 import com.ecorich.hrservice.service.JobHistoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -39,13 +40,13 @@ public class JobHistoryRestController {
             @Parameter(name = "size", description = "페이지 크기", example = "10")
     })
     @GetMapping("/{employeeId}")
-    public ResponseEntity<CommonResponse<Page<JobHistoryDetailData>>> searchJobHistory(
+    public ResponseEntity<CommonResponse<Page<JobHistoryDetailResponse>>> searchJobHistory(
             @Parameter(name = "employeeId", description = "직원 아이디", example = "101", required = true) @PathVariable Long employeeId,
             @Parameter(hidden = true) JobHistorySearchRequest request,
             @Parameter(hidden = true) @PageableDefault(size = 10, sort = {"startDate"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
         JobHistorySearchParam param = request.toJobHistorySearchParam(employeeId);
-        Page<JobHistoryDetailData> page = jobHistoryService.searchJobHistory(param, pageable);
+        Page<JobHistoryDetailResponse> page = jobHistoryService.searchJobHistory(param, pageable).map(JobHistoryDetailResponse::from);
         return ResponseEntity.ok(CommonResponse.of(page));
     }
 }
