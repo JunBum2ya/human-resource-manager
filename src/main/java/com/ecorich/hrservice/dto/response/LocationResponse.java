@@ -1,7 +1,6 @@
 package com.ecorich.hrservice.dto.response;
 
-import com.ecorich.hrservice.dto.CountryWithRegionData;
-import com.ecorich.hrservice.dto.LocationWithCountryAndRegionData;
+import com.ecorich.hrservice.dto.LocationDetailData;
 import lombok.Builder;
 
 @Builder
@@ -16,7 +15,7 @@ public record LocationResponse(
         Long regionId,
         String regionName
 ) {
-    public static LocationResponse from(LocationWithCountryAndRegionData data) {
+    public static LocationResponse from(LocationDetailData data) {
         return LocationResponse.builder()
                 .locationId(data.locationId())
                 .streetAddress(data.streetAddress())

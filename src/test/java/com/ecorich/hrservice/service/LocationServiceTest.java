@@ -1,7 +1,7 @@
 package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.*;
-import com.ecorich.hrservice.dto.LocationWithCountryAndRegionData;
+import com.ecorich.hrservice.dto.LocationDetailData;
 import com.ecorich.hrservice.dto.param.LocationSearchParam;
 import com.ecorich.hrservice.repository.LocationRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -45,7 +44,7 @@ public class LocationServiceTest {
         given(locationRepository.searchLocation(any(LocationSearchParam.class),any(Pageable.class)))
                 .willReturn(new PageImpl<>(List.of(createLocation(1L)),pageable,1L));
         //when
-        Page<LocationWithCountryAndRegionData> page = sut.searchLocation(param, pageable);
+        Page<LocationDetailData> page = sut.searchLocation(param, pageable);
         //then
         assertThat(page).isNotEmpty();
         assertThat(page.getSize()).isEqualTo(10);

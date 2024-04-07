@@ -1,6 +1,6 @@
 package com.ecorich.hrservice.controller;
 
-import com.ecorich.hrservice.dto.LocationWithCountryAndRegionData;
+import com.ecorich.hrservice.dto.LocationDetailData;
 import com.ecorich.hrservice.dto.request.LocationSearchRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
 import com.ecorich.hrservice.dto.response.LocationResponse;
@@ -50,7 +50,7 @@ public class LocationRestController {
             @Parameter(hidden = true) LocationSearchRequest request,
             @Parameter(hidden = true) @PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable
     ) {
-        Page<LocationWithCountryAndRegionData> page = locationService.searchLocation(request.toLocationSearchParam(),pageable);
+        Page<LocationDetailData> page = locationService.searchLocation(request.toLocationSearchParam(),pageable);
         return ResponseEntity.ok(CommonResponse.of(page.map(LocationResponse::from)));
     }
 

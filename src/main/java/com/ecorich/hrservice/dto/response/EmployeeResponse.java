@@ -5,15 +5,12 @@ import lombok.Builder;
 
 @Builder
 public record EmployeeResponse(Long memberId, String firstName, String lastName, String email) {
-    public static EmployeeResponse from(EmployeeData simpleEmployeeData) {
-        if(simpleEmployeeData == null) {
-            return null;
-        }
+    public static EmployeeResponse from(EmployeeData employee) {
         return EmployeeResponse.builder()
-                .memberId(simpleEmployeeData.employeeId())
-                .firstName(simpleEmployeeData.firstName())
-                .lastName(simpleEmployeeData.lastName())
-                .email(simpleEmployeeData.email())
+                .memberId(employee.employeeId())
+                .firstName(employee.firstName())
+                .lastName(employee.lastName())
+                .email(employee.email())
                 .build();
     }
 }

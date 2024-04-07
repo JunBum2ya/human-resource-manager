@@ -2,6 +2,7 @@ package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.Department;
 import com.ecorich.hrservice.dto.DepartmentData;
+import com.ecorich.hrservice.dto.DepartmentDetailData;
 import com.ecorich.hrservice.dto.EmployeeData;
 import com.ecorich.hrservice.dto.param.DepartmentSearchParam;
 import com.ecorich.hrservice.repository.DepartmentRepository;
@@ -27,9 +28,9 @@ public class DepartmentService {
      * @return
      */
     @Transactional(readOnly = true)
-    public Page<DepartmentData> searchDepartment(DepartmentSearchParam param, Pageable pageable) {
+    public Page<DepartmentDetailData> searchDepartment(DepartmentSearchParam param, Pageable pageable) {
         Page<Department> page = departmentRepository.searchDepartment(param,pageable);
-        return page.map(DepartmentData::from);
+        return page.map(DepartmentDetailData::from);
     }
 
     /**
