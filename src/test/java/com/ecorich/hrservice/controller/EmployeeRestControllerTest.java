@@ -95,7 +95,7 @@ public class EmployeeRestControllerTest {
                 .email("test@test.com")
                 .phoneNumber("010-1234-5678")
                 .hireDate(LocalDate.now())
-                .jobData(JobData.builder()
+                .job(JobData.builder()
                         .jobId("AC-DG")
                         .maxSalary(445L)
                         .minSalary(43L)

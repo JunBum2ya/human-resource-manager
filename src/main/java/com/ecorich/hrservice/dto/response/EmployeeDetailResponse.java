@@ -27,7 +27,7 @@ public record EmployeeDetailResponse(Long employeeId,
                 .email(employeeData.email())
                 .phoneNumber(employeeData.phoneNumber())
                 .hireDate(employeeData.hireDate())
-                .jobData(JobResponse.from(employeeData.jobData()))
+                .jobData(JobResponse.from(employeeData.job()))
                 .salary(employeeData.salary())
                 .commissionPct(employeeData.commissionPct())
                 .manager(EmployeeResponse.from(employeeData.manager()))

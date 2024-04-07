@@ -47,7 +47,7 @@ public class EmployeeServiceTest {
         //then
         assertThat(employeeData).isNotEmpty();
         assertThat(employeeData.get().employeeId()).isEqualTo(employeeId);
-        assertThat(employeeData.get().jobData()).isNotNull();
+        assertThat(employeeData.get().job()).isNotNull();
         then(employeeRepository).should().findById(any(Long.class));
     }
 
@@ -68,7 +68,7 @@ public class EmployeeServiceTest {
         //then
         assertThat(employeeData).isNotNull();
         assertThat(employeeData.employeeId()).isEqualTo(employeeId);
-        assertThat(employeeData.jobData()).hasFieldOrPropertyWithValue("jobId",jobId);
+        assertThat(employeeData.job()).hasFieldOrPropertyWithValue("jobId",jobId);
         assertThat(employeeData.manager()).isNotNull();
         assertThat(employeeData.department()).hasFieldOrPropertyWithValue("departmentId",departmentId);
         then(employeeRepository).should(times(2)).getReferenceById(any(Long.class));

@@ -7,25 +7,25 @@ import java.time.LocalDate;
 
 /**
  * 이력 DTO
- * @param employeeData
+ * @param employee
  * @param startDate
  * @param endDate
- * @param jobData
- * @param departmentData
+ * @param job
+ * @param department
  */
 @Builder
-public record JobHistoryData(EmployeeData employeeData,
+public record JobHistoryData(EmployeeData employee,
                              LocalDate startDate,
                              LocalDate endDate,
-                             JobData jobData,
-                             DepartmentData departmentData) {
+                             JobData job,
+                             DepartmentData department) {
     public static JobHistoryData from(JobHistory jobHistory) {
         return JobHistoryData.builder()
-                .employeeData(EmployeeData.from(jobHistory.getEmployee()))
+                .employee(EmployeeData.from(jobHistory.getEmployee()))
                 .startDate(jobHistory.getStartDate())
                 .endDate(jobHistory.getEndDate())
-                .jobData(JobData.from(jobHistory.getJob()))
-                .departmentData(DepartmentData.from(jobHistory.getDepartment()))
+                .job(JobData.from(jobHistory.getJob()))
+                .department(DepartmentData.from(jobHistory.getDepartment()))
                 .build();
     }
 }
