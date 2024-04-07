@@ -1,5 +1,6 @@
 package com.ecorich.hrservice.service;
 
+import com.ecorich.hrservice.domain.Department;
 import com.ecorich.hrservice.domain.Employee;
 import com.ecorich.hrservice.domain.Job;
 import com.ecorich.hrservice.domain.JobHistory;
@@ -67,6 +68,7 @@ public class JobHistoryServiceTest {
                 .employee(Employee.builder()
                         .id(3L)
                         .build())
+                .department(Department.builder().id(1L).name("TEST").build())
                 .build();
         return new PageImpl<JobHistory>(List.of(jobHistory),Pageable.ofSize(10),1);
     }
