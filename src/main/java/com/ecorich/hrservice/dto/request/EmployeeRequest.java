@@ -25,7 +25,6 @@ public class EmployeeRequest {
     @NotEmpty(message = "작업 아이디를 입력하세요.")
     private String jobId;
     @Schema(description = "관리자 아이디", example = "101")
-    @NotNull(message = "관리자 아이디를 입력하세요.")
     private Long managerId;
     @Schema(description = "부서 아이디", example = "10")
     private Long departmentId;

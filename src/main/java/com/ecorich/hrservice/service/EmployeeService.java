@@ -52,7 +52,7 @@ public class EmployeeService {
         try {
             Employee employee = employeeRepository.getReferenceById(employeeId);
             Job job = jobRepository.getReferenceById(jobId);
-            Employee manager = employeeRepository.getReferenceById(managerId);
+            Employee manager = managerId != null ? employeeRepository.getReferenceById(managerId) : null;
             Department department = departmentId != null ? departmentRepository.getReferenceById(departmentId) : null;
             employee.update(employeeData.firstName(), employeeData.lastName(), employeeData.email(), employeeData.phoneNumber(), employeeData.hireDate(), job, employeeData.salary(), employeeData.commissionPct(), manager, department);
             return EmployeeDetailData.from(employee);
