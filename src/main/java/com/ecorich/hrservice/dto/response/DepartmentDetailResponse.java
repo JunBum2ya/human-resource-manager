@@ -13,8 +13,8 @@ public record DepartmentDetailResponse(Long departmentId, String departmentName,
         return DepartmentDetailResponse.builder()
                 .departmentId(department.departmentId())
                 .departmentName(department.departmentName())
-                .manager(EmployeeResponse.from(department.manager()))
-                .location(LocationResponse.from(department.location()))
+                .manager(department.manager() != null ? EmployeeResponse.from(department.manager()) : null)
+                .location(department.manager() != null ? LocationResponse.from(department.location()) : null)
                 .build();
     }
 }
