@@ -3,6 +3,7 @@ package com.ecorich.hrservice.repository.querydsl;
 import com.ecorich.hrservice.domain.Location;
 import com.ecorich.hrservice.domain.QLocation;
 import com.ecorich.hrservice.dto.param.LocationSearchParam;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -27,18 +28,29 @@ public class LocationRepositoryCustomImpl extends QuerydslRepositorySupport impl
     @Override
     public Page<Location> searchLocation(LocationSearchParam param, Pageable pageable) {
         QLocation location = QLocation.location;
-        JPAQuery<Location> query = jpaQueryFactory.selectFrom(location);
-        query.where(
-                location.id.isNotNull()
-                        .and(param.getLocationId().map(location.id::eq).orElse(null))
-                        .and(param.getCity().map(location.city::contains).orElse(null))
-                        .and(param.getPostalCode().map(location.postalCode::eq).orElse(null))
-                        .and(param.getStreetAddress().map(location.streetAddress::contains).orElse(null))
-                        .and(param.getStateProvince().map(location.stateProvince::eq).orElse(null))
-                        .and(param.getCountryId().map(location.country.id::eq).orElse(null))
-                        .and(param.getRegionId().map(location.country.region.id::eq).orElse(null))
-        );
+        JPAQuery<Location> query = jpaQueryFactory.selectFrom(location)
+                .where(buildWhereClause(param));
+        JPAQuery<Long> countQuery = jpaQueryFactory.select(location.count())
+                .from(location)
+                .where(buildWhereClause(param));
         List<Location> content = Objects.requireNonNull(this.getQuerydsl()).applyPagination(pageable, query).fetch();
-        return new PageImpl<Location>(content, pageable, query.fetchCount());
+        return new PageImpl<Location>(content, pageable, countQuery.fetch().size());
+    }
+
+    /**
+     * where 절 조회
+     * @param param
+     * @return
+     */
+    private Predicate buildWhereClause(LocationSearchParam param) {
+        QLocation location = QLocation.location;
+        return location.id.isNotNull()
+                .and(param.getLocationId().map(location.id::eq).orElse(null))
+                .and(param.getCity().map(location.city::contains).orElse(null))
+                .and(param.getPostalCode().map(location.postalCode::eq).orElse(null))
+                .and(param.getStreetAddress().map(location.streetAddress::contains).orElse(null))
+                .and(param.getStateProvince().map(location.stateProvince::eq).orElse(null))
+                .and(param.getCountryId().map(location.country.id::eq).orElse(null))
+                .and(param.getRegionId().map(location.country.region.id::eq).orElse(null));
     }
 }

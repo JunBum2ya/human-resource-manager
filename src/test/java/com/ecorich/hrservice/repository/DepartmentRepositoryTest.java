@@ -42,6 +42,7 @@ public class DepartmentRepositoryTest {
         Location location = locationRepository.save(TestCaseUtil.createLocation(country));
         Department department = TestCaseUtil.createDepartment(90L,location);
         departmentRepository.save(department);
+        departmentRepository.save(TestCaseUtil.createDepartment(100L,location));
         locationId = location.getId();
     }
 
@@ -57,8 +58,8 @@ public class DepartmentRepositoryTest {
         Page<Department> page = departmentRepository.searchDepartment(param, pageable);
         //then
         assertThat(page).isNotEmpty();
-        assertThat(page.getTotalElements()).isEqualTo(1L);
-        assertThat(page.getContent().size()).isEqualTo(1);
+        assertThat(page.getTotalElements()).isEqualTo(2L);
+        assertThat(page.getContent().size()).isEqualTo(2);
     }
 
     @DisplayName("부서 아이디로 조회를 하면 부서가 반환된다.")

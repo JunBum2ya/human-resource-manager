@@ -40,9 +40,9 @@ public class DepartmentRestController {
      */
     @Operation(summary = "부서 검색 API", description = "부서 검색 API")
     @Parameters({
-            @Parameter(name = "departmentId", description = "부서 아이디(일치)", example = "1"),
-            @Parameter(name = "departmentName", description = "부서명(부분일치)", example = "HR"),
-            @Parameter(name = "locationId", description = "위치 아이디(일치)", example = "2"),
+            @Parameter(name = "departmentId", description = "부서 아이디(일치)"),
+            @Parameter(name = "departmentName", description = "부서명(부분일치)"),
+            @Parameter(name = "locationId", description = "위치 아이디(일치)"),
             @Parameter(name = "page", description = "페이지 번호", example = "0"),
             @Parameter(name = "size", description = "페이지 크기", example = "10")
     })
