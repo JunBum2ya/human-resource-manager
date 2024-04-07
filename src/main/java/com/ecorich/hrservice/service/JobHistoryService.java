@@ -1,7 +1,7 @@
 package com.ecorich.hrservice.service;
 
 import com.ecorich.hrservice.domain.JobHistory;
-import com.ecorich.hrservice.dto.JobHistoryData;
+import com.ecorich.hrservice.dto.JobHistoryDetailData;
 import com.ecorich.hrservice.dto.param.JobHistorySearchParam;
 import com.ecorich.hrservice.repository.JobHistoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,8 +24,8 @@ public class JobHistoryService {
      * @return
      */
     @Transactional(readOnly = true)
-    public Page<JobHistoryData> searchJobHistory(JobHistorySearchParam param, Pageable pageable) {
+    public Page<JobHistoryDetailData> searchJobHistory(JobHistorySearchParam param, Pageable pageable) {
         Page<JobHistory> jobHistoryPage = jobHistoryRepository.searchJobHistory(param,pageable);
-        return jobHistoryPage.map(JobHistoryData::from);
+        return jobHistoryPage.map(JobHistoryDetailData::from);
     }
 }

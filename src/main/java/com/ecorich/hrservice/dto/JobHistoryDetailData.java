@@ -14,13 +14,13 @@ import java.time.LocalDate;
  * @param department
  */
 @Builder
-public record JobHistoryData(EmployeeData employee,
-                             LocalDate startDate,
-                             LocalDate endDate,
-                             JobData job,
-                             DepartmentData department) {
-    public static JobHistoryData from(JobHistory jobHistory) {
-        return JobHistoryData.builder()
+public record JobHistoryDetailData(EmployeeData employee,
+                                   LocalDate startDate,
+                                   LocalDate endDate,
+                                   JobData job,
+                                   DepartmentData department) {
+    public static JobHistoryDetailData from(JobHistory jobHistory) {
+        return JobHistoryDetailData.builder()
                 .employee(EmployeeData.from(jobHistory.getEmployee()))
                 .startDate(jobHistory.getStartDate())
                 .endDate(jobHistory.getEndDate())

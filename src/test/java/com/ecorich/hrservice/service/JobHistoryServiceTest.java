@@ -4,7 +4,7 @@ import com.ecorich.hrservice.domain.Department;
 import com.ecorich.hrservice.domain.Employee;
 import com.ecorich.hrservice.domain.Job;
 import com.ecorich.hrservice.domain.JobHistory;
-import com.ecorich.hrservice.dto.JobHistoryData;
+import com.ecorich.hrservice.dto.JobHistoryDetailData;
 import com.ecorich.hrservice.dto.param.JobHistorySearchParam;
 import com.ecorich.hrservice.repository.JobHistoryRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -48,7 +48,7 @@ public class JobHistoryServiceTest {
         given(jobHistoryRepository.searchJobHistory(any(JobHistorySearchParam.class),any(Pageable.class)))
                 .willReturn(createJobHistoryPage());
         //when
-        Page<JobHistoryData> page = sut.searchJobHistory(param, pageable);
+        Page<JobHistoryDetailData> page = sut.searchJobHistory(param, pageable);
         //then
         assertThat(page).isNotEmpty();
         assertThat(page.getTotalElements()).isEqualTo(1);
