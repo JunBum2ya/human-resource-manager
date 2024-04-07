@@ -44,3 +44,14 @@ spring:
   sql:
     init:
       mode: never
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://employee-rds.czqoei2oylqq.ap-northeast-2.rds.amazonaws.com:3306/employee
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
