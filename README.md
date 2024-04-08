@@ -20,4 +20,4 @@
 - Database : Mysql
 
 # API 명세서
-https://www.notion.so/API-26c1820ec55a46a59d3559a1bdb5391c?pvs=4
+https://pewter-soybean-086.notion.site/API-26c1820ec55a46a59d3559a1bdb5391c
