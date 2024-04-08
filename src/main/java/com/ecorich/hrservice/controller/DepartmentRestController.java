@@ -8,6 +8,7 @@ import com.ecorich.hrservice.dto.request.UpdateDepartmentSalaryRequest;
 import com.ecorich.hrservice.dto.response.CommonResponse;
 import com.ecorich.hrservice.dto.response.DepartmentDetailResponse;
 import com.ecorich.hrservice.dto.response.DepartmentResponse;
+import com.ecorich.hrservice.dto.response.EmployeeResponse;
 import com.ecorich.hrservice.service.DepartmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -63,11 +64,14 @@ public class DepartmentRestController {
      */
     @Operation(summary = "임금 일괄 수정", description = "부서내 직원들의 임금을 일괄적으로 인상")
     @PutMapping("/{departmentId}")
-    public ResponseEntity<CommonResponse<List<EmployeeData>>> updateSalaryInDepartment(
+    public ResponseEntity<CommonResponse<List<EmployeeResponse>>> updateSalaryInDepartment(
             @Parameter(name = "departmentId", description = "부서 아이디", example = "10", required = true) @PathVariable Long departmentId,
             @Valid @RequestBody UpdateDepartmentSalaryRequest request
     ) {
-        List<EmployeeData> employeeList = departmentService.updateDepartmentSalary(departmentId, request.getRate());
+        List<EmployeeResponse> employeeList = departmentService.updateDepartmentSalary(departmentId, request.getRate())
+                .stream()
+                .map(EmployeeResponse::from)
+                .toList();
         return ResponseEntity.ok(CommonResponse.of(employeeList));
     }
 }
