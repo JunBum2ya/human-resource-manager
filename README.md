@@ -18,3 +18,6 @@
 - Spring Boot : 3.2.4
 - java : 21
 - Database : Mysql
+
+# API 명세서
+https://www.notion.so/API-26c1820ec55a46a59d3559a1bdb5391c?pvs=4
